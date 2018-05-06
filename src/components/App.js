@@ -4,6 +4,25 @@ import Order from "./Order";
 import Inventory from "./Inventory";
 
 class App extends React.Component {
+  //set initial state when component loaded
+  //use property (or constructor)
+  state = {
+    fishes: {},
+    order: {}
+  };
+  //how to get item into state? add second method that takes in fish
+  addFish = fish => {
+    console.log("Adding a fish");
+    //pass with props
+    //have to use React API to update status
+    //1. take a copy of the existing state, because you don't want to cause a mutation of status
+    const fishes = { ...this.state.fishes };
+    //2. add new fish to fishes variable
+    fishes[`fish${Date.now()}`] = fish;
+    //3. set the new fishes object to state
+    //use specific method and pass in the piece that you want to update; takes the updated copy, and updates the existing fishes
+    this.setState({ fishes });
+  };
   render() {
     return (
       <div className="catch-of-the-day">
@@ -11,7 +30,7 @@ class App extends React.Component {
           <Header tagline="Fresh Seafood Market" />
         </div>
         <Order />
-        <Inventory />
+        <Inventory addFish={this.addFish} />
       </div>
     );
   }
