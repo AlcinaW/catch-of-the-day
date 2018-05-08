@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Order from "./Order";
 import Inventory from "./Inventory";
+import sampleFishes from "../sample-fishes";
 
 class App extends React.Component {
   //set initial state when component loaded
@@ -23,14 +24,20 @@ class App extends React.Component {
     //use specific method and pass in the piece that you want to update; takes the updated copy, and updates the existing fishes
     this.setState({ fishes });
   };
+  loadSampleFishes = () => {
+    this.setState({ fishes: sampleFishes });
+  }
   render() {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="Fresh Seafood Market" />
+          <ul className="fishes">
+            
+          </ul>
         </div>
         <Order />
-        <Inventory addFish={this.addFish} />
+        <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes} />
       </div>
     );
   }
