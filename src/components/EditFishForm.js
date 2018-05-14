@@ -2,7 +2,9 @@ import React from "react";
 
 class EditFishForm extends React.Component {
   render() {
-    return <p>Edit Fish</p>;
+    return <div className="fish-edit">
+
+    </div>
   }
 }
 
